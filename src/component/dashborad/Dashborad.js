@@ -18,7 +18,6 @@ const Dashboard = () => {
   const [loanAmount, setLoanAmount] = useState("");
   const [loanDurationYears, setLoanDurationYears] = useState([]);
   const [coApplicant, setCoApplicant] = useState("");
-  const [loanAppliedCount, setLoanAppliedCount] = useState(0);
   const handleLoanTypeChange = (e) => {
     setLoanType(e.target.value);
   };
@@ -26,11 +25,6 @@ const Dashboard = () => {
   const handleLoanAmountChange = (e) => {
     setLoanAmount(e.target.value);
   };
-
-  // const handleLoanDurationChange = () => {
-  //   setLoanDurationChecked(!loanDurationChecked);
-  // };
-
   const handleLoanDurationYearsChange = (year) => {
     if (loanDurationYears.includes(year)) {
       setLoanDurationYears(loanDurationYears.filter((y) => y !== year));
@@ -38,11 +32,6 @@ const Dashboard = () => {
       setLoanDurationYears([...loanDurationYears, year]);
     }
   };
-
-  // const toggleDropdown = () => {
-  //   setDropdownOpen(!dropdownOpen);
-  // };
-
   const handleCoApplicantChange = (e) => {
     setCoApplicant(e.target.value);
   };
@@ -66,8 +55,7 @@ const Dashboard = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     saveFormValuesToLocalStorage();
-    setLoanAppliedCount(loanAppliedCount + 1);
-    navigate("/loan-applied", { state: { loanAppliedCount } });
+    navigate("/loan-applied");
   };
 
   return (
@@ -190,5 +178,4 @@ const Dashboard = () => {
     </Container>
   );
 };
-
 export default Dashboard;
