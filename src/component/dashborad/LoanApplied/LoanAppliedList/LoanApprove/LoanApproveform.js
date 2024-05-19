@@ -89,7 +89,7 @@ const LoanApproveform = () => {
                   <InputGroup className="mb-3" style={{ height: '48px', fontSize: '16px' }}>
                     <InputGroup.Text>INR </InputGroup.Text>
                     <Form.Control
-                      type="number"
+                      type="text"
                       value={loan.loanAmount}
                       readOnly
                     />

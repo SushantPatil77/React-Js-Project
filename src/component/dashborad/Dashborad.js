@@ -88,7 +88,7 @@ const Dashboard = () => {
                       style={{ paddingRight: '2.5rem',height:'48px', fontSize:'16px' }} 
                     >
                       <option value="">Select</option>
-                      <option value="personal">Personal Loan</option>
+                      <option value="personal">Office Loan</option>
                       <option value="home">Home Loan</option>
                       <option value="car">Car Loan</option>
                     </Form.Control>
@@ -103,11 +103,11 @@ const Dashboard = () => {
                 <Form.Group controlId="loanDuration" className="text-start">
                   <Form.Label className="text-start">Loan Duration:</Form.Label>
                   <div className="text-start">
-                    {[5, 10, 15, 20, 30].map((year) => (
+                    {['5Yr','10Yr','15Yr','20Yr'].map((year) => (
                       <Form.Check
                         key={year}
                         type="checkbox"
-                        label={`${year} years`}
+                        label={`${year.replace('Yr', '')} year${year === '1Yr' ? '' : 's'}`}
                         checked={loanDurationYears.includes(year)}
                         onChange={() => handleLoanDurationYearsChange(year)}
                       />
@@ -121,7 +121,7 @@ const Dashboard = () => {
                   <InputGroup className=" mb-3" style={{height:'48px', fontSize:'16px'}}>
                     <InputGroup.Text>INR </InputGroup.Text>
                     <Form.Control
-                      type="number"
+                      type="text"
                       placeholder="Enter loan amount"
                       value={loanAmount}
                       onChange={handleLoanAmountChange}
