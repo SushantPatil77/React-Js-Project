@@ -1,0 +1,38 @@
+.no-border-table {
+    border-collapse: collapse;
+  }
+  
+  .no-border-table th,
+  .no-border-table td {
+    border: none;
+  }
+  .container-padding {
+    padding: 20px;
+    margin-left: 80px;
+    margin-right: 80px;
+  }
+  
+  .card-padding {
+    padding: 20px;
+  }
+  
+  .no-border-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  
+  
+  .no-border-table th {
+    text-align: left;
+  }
+  
+  .no-border-table input {
+    width: 50%;
+    background: transparent;
+    pointer-events: none;
+  }
+  .table-cell {
+    vertical-align: middle;
+    text-align: center;
+  }

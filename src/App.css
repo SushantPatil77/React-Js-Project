@@ -36,3 +36,20 @@
     transform: rotate(360deg);
   }
 }
+.nav-link-button {
+  background: none;
+  border: none;
+  color: white;
+  text-decoration: underline;
+  cursor: pointer;
+  padding: 0;
+  font: inherit;
+}
+
+.nav-link-button:hover {
+  text-decoration: none;
+}
+
+.nav-link-button:focus {
+  outline: 2px solid #fff;
+}
