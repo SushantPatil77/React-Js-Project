@@ -25,12 +25,11 @@ const LoanApproveForm = () => {
           updatedDepartments[department] = true;
         }
       });
-      // Only update state if there is an actual change
+      
       if (JSON.stringify(updatedDepartments) !== JSON.stringify(departments)) {
         setDepartments(updatedDepartments);
       }
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [loan]);
 
   if (!loan) {
@@ -46,29 +45,20 @@ const LoanApproveForm = () => {
 
   const handleApprove = (e) => {
     e.preventDefault();
-
-    // Creating the approved loan object
     const approvedLoan = {
       ...loan,
       departments: Object.keys(departments).filter(department => departments[department])
     };
-
-    // Getting approved loans from local storage
     const approvedLoans = JSON.parse(localStorage.getItem('approvedLoans')) || [];
     
-    // Adding the new approved loan to the approved loans array
     approvedLoans.push(approvedLoan);
 
-    // Storing the updated approved loans array in local storage
     localStorage.setItem('approvedLoans', JSON.stringify(approvedLoans));
 
-    // Removing the approved loan from the loanDetails array
     const updatedLoanDetails = loanDetails.filter((_, i) => i !== parseInt(index));
     
-    // Storing the updated loanDetails array in local storage
     localStorage.setItem('loanDetails', JSON.stringify(updatedLoanDetails));
-
-    // Navigating to the applied loans page
+    
     navigate("/loan-applied");
   };
 

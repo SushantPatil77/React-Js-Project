@@ -1,8 +1,7 @@
 import React from 'react';
 import { Table, Button, Card, Form } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
-import './loanAppliedList.css'; // Ensure you have your stylesheet for custom styles
-
+import './loanAppliedList.css'; 
 const LoanAppliedList = () => {
     const navigate = useNavigate();
   const loanDetails = JSON.parse(localStorage.getItem("loanDetails")) || [];
