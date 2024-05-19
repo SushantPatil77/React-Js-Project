@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { Container, Card, Form, Row, Col, Button, InputGroup } from 'react-bootstrap';
 import { BsFillCaretDownFill } from 'react-icons/bs';
 
-
-const LoanApproveform = () => {
+const LoanApproveForm = () => {
+  const navigate = useNavigate();
   const { index } = useParams();
   const loanDetails = JSON.parse(localStorage.getItem('loanDetails')) || [];
   const loan = loanDetails[parseInt(index)];
@@ -25,8 +25,12 @@ const LoanApproveform = () => {
           updatedDepartments[department] = true;
         }
       });
-      setDepartments(updatedDepartments);
+      // Only update state if there is an actual change
+      if (JSON.stringify(updatedDepartments) !== JSON.stringify(departments)) {
+        setDepartments(updatedDepartments);
+      }
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [loan]);
 
   if (!loan) {
@@ -40,11 +44,39 @@ const LoanApproveform = () => {
     }));
   };
 
+  const handleApprove = (e) => {
+    e.preventDefault();
+
+    // Creating the approved loan object
+    const approvedLoan = {
+      ...loan,
+      departments: Object.keys(departments).filter(department => departments[department])
+    };
+
+    // Getting approved loans from local storage
+    const approvedLoans = JSON.parse(localStorage.getItem('approvedLoans')) || [];
+    
+    // Adding the new approved loan to the approved loans array
+    approvedLoans.push(approvedLoan);
+
+    // Storing the updated approved loans array in local storage
+    localStorage.setItem('approvedLoans', JSON.stringify(approvedLoans));
+
+    // Removing the approved loan from the loanDetails array
+    const updatedLoanDetails = loanDetails.filter((_, i) => i !== parseInt(index));
+    
+    // Storing the updated loanDetails array in local storage
+    localStorage.setItem('loanDetails', JSON.stringify(updatedLoanDetails));
+
+    // Navigating to the applied loans page
+    navigate("/loan-applied");
+  };
+
   return (
     <Container className="mt-4">
       <Card className="dashboard-card">
         <Card.Body>
-          <Form>
+          <Form onSubmit={handleApprove}>
             <Row>
               <Col md={6} className="mr-md-3">
                 <Form.Group controlId="loanType" className="text-start">
@@ -69,7 +101,7 @@ const LoanApproveform = () => {
                 </Form.Group>
                 <br />
                 <Form.Group controlId="loanDuration" className="text-start">
-                  <Form.Label className="text-start">Departments:</Form.Label>
+                  <Form.Label className="text-start">Send to Group </Form.Label>
                   <div className="text-start">
                     {Object.keys(departments).map((department, idx) => (
                       <Form.Check
@@ -144,10 +176,12 @@ const LoanApproveform = () => {
             </Row>
             <Row className="mt-3">
               <Col>
-                <Button variant="primary" className="custom-button">
+                <Button type="submit" variant="primary" className="custom-button">
                   Approve
                 </Button>{" "}
-                <Button variant="outline-secondary" className="custom-button">Cancel</Button>
+                <Button variant="outline-secondary" className="custom-button" onClick={() => navigate("/")}>
+                  Cancel
+                </Button>
               </Col>
             </Row>
           </Form>
@@ -157,4 +191,4 @@ const LoanApproveform = () => {
   );
 };
 
-export default LoanApproveform;
+export default LoanApproveForm;

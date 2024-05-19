@@ -5,7 +5,8 @@ import { Link } from "react-router-dom";
 const LoanApplied = () => {
   const loanDetails = JSON.parse(localStorage.getItem("loanDetails")) || [];
   const loanDetailsCount = loanDetails.length;
-
+  const loanApprove = JSON.parse(localStorage.getItem("approvedLoans")) || [];
+  const loanApproveCount= loanApprove.length;
   return (
     <Container className="mt-4">
       <Row>
@@ -42,7 +43,7 @@ const LoanApplied = () => {
                     marginTop: "30%",
                   }}
                 >
-                  {0}
+                  {loanApproveCount}
                 </p>
               </Card.Body>
             </Card>
