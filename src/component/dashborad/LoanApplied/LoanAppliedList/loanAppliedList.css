@@ -28,11 +28,14 @@
   }
   
   .no-border-table input {
-    width: 50%;
+    width: 55%;
     background: transparent;
     pointer-events: none;
   }
   .table-cell {
     vertical-align: middle;
     text-align: center;
+  }
+  .view-button {
+    width: 100px;
   }

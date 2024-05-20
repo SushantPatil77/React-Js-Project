@@ -1,6 +1,7 @@
 import React from 'react';
 import { Table, Button, Card, Form } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
+import { BsFillCaretDownFill } from 'react-icons/bs';
 import './loanAppliedList.css'; 
 const LoanAppliedList = () => {
     const navigate = useNavigate();
@@ -18,9 +19,9 @@ const LoanAppliedList = () => {
               <tr>
                 <th>Loan Type</th>
                 <th>Amount</th>
-                <th>Co-Applicant</th>
+                <th>Co-Applicant <BsFillCaretDownFill style={{marginLeft:'20px'}} /> </th>
                 <th>Loan Duration</th>
-                <th>Action</th>
+                <th className='action-cell'>Action</th>
               </tr>
             </thead>
             <tbody>
@@ -40,7 +41,7 @@ const LoanAppliedList = () => {
                       <Form.Control type="text" value={loan.loanDurationYears} readOnly />
                     </td>
                     <td className="table-cell">
-                      <Button variant="primary"  onClick={() => handleViewClick(index)}>View</Button>
+                      <Button variant="primary" className="view-button"  onClick={() => handleViewClick(index)}>View</Button>
                     </td>
                   </tr>
                 ))

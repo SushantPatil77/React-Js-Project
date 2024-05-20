@@ -1,7 +1,7 @@
 .dashboard-card {
-    padding: 20px;
     margin-bottom: 20px;
     border-radius: 15px;
+    padding: 2rem;
   }
   
   .co-applicant-options {
@@ -24,6 +24,7 @@
   }
   .custom-button {
     width: 150px;
+    margin-right: 1rem;
   }
   .custom-select {
     height: 48px; 
